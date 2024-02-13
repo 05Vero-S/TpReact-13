@@ -1,5 +1,6 @@
 import { useState } from "react";
 import FormularioClima from "./FormularioClima";
+import CardsClima from "./CardsClima";
 
 
 const CuadroClima = () => {
@@ -28,16 +29,26 @@ const CuadroClima = () => {
             console.log(error);
             setLoading(false);
             setInfo(false);
-        })
+        });
     }
 
 
     return (
-        
-            <FormularioClima
+        <>
+        <FormularioClima
             nuevaUbicacion = {obtenerUbucacion}
             
             />
+
+            <CardsClima
+            infoDatos = {info}
+            loadingDatos = {loading}
+            clima = {clima}
+            
+            
+            />
+        </>
+            
         
     );
 };
