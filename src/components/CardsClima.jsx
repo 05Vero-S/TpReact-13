@@ -1,14 +1,15 @@
-import Spinner from "./Spinner";
+import SpinnerClima from "./SpinnerClima";
+
 
 
 const CardsClima = ({loadingDatos, infoDatos, clima}) => {
 
-    /*if(loadingDatos){
+    if(loadingDatos){
         return 
+        <SpinnerClima/>;
+
         
-        <Spinner/>
-  
-    }*/
+    }
 
 
 
