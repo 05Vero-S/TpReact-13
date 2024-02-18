@@ -4,31 +4,31 @@ import CardsClima from "./CardsClima";
 
 
 const CuadroClima = () => {
-    let urlClima = "https://api.openweathermap.org/data/2.5/weather?appid=ff372c0ee7bcc4a849d4c8cf705127ba&lang=es";
-    let ciudadUrl = "&q=";
+    let urlWeather = "https://api.openweathermap.org/data/2.5/weather?appid=ff372c0ee7bcc4a849d4c8cf705127ba&lang=es";
+    let cityUrl = "&q=";
 
-    const [clima, setClima] = useState([]);
+    const [weather, setWeather] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [info, setInfo] = useState(false);
-    const [ubicacion, setUbicacion] = useState("");
+    const [show, setShow] = useState(false);
+    const [location, setLocation] = useState("");
 
-    const obtenerUbucacion = async(ubic) =>{
+    const getLocation = async(loc) =>{
         setLoading(true);
-        setUbicacion(ubic);
+        setLocation(loc);
 
-        urlClima = urlClima + ciudadUrl + ubic;
+        urlWeather = urlWeather + cityUrl + loc;
 
-        await fetch(urlClima).then((response) =>{
+        await fetch(urlWeather).then((response) =>{
             if(!response.ok) throw{response}
             return response.json();
 
-        }).then((datosClima)=>{
-            console.log(datosClima);
-            setClima(datosClima);
+        }).then((weatherData)=>{
+            console.log(weatherData);
+            setWeather(weatherData);
         }).catch(error =>{
             console.log(error);
             setLoading(false);
-            setInfo(false);
+            setShow(false);
         });
     }
 
@@ -36,14 +36,14 @@ const CuadroClima = () => {
     return (
         <>
         <FormularioClima
-            nuevaUbicacion = {obtenerUbucacion}
+            newLocation = {getLocation}
             
             />
 
             <CardsClima
-            infoDatos = {info}
-            loadingDatos = {loading}
-            clima = {clima}
+            showData = {show}
+            loadingData = {loading}
+            weather = {weather}
             
             
             />
